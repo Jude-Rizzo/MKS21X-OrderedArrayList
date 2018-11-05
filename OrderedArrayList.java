@@ -1,27 +1,33 @@
-import java.util.ArrayList;
-public class OrderedArrayList<T> extends NoNullArrayList<T>{
+public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T>{
   public OrderedArrayList(){
-
+    super();
+  };
+  public OrderedArrayList(int capacity){
+    super(capacity);
   }
-
-  public OrderedArrayList(int startingCapacity){
-    super(startingCapacity);
-
-  }
-
-  public boolean add(T mystery){
-    if (this.size() == 0){
-      return super.add(mystery)
-    } else{
-    for(int i = 0; i < this.size(); i++){
-      if(mystery.compareTo(this.get(i)) > 0 &&
-         mystery.compareTo(this.get(i+1) < 0)){
-             return super.add(i+1, mystery)
-           }
+  public boolean add(T element){
+    if (super.size() == 0){
+      super.add(element);
+      return true;
     }
-
-    return super.add(mystery);
+    int z = super.size();
+    for (int i = 0; i < len; i++){
+      if(super.get(i).compareTo(element) >= 0){
+        super.add(i, element);
+        z--;
+        return true;
+      }
+    }
+    super.add(element);
+    return true;
   }
+  public void add(int index, T element){
+    add(element);
   }
-
+  public T set(int index, T element){
+    T old = super.get(index);
+    super.remove(index);
+    add(element);
+    return old;
+  }
 }
