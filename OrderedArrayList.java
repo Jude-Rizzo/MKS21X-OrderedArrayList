@@ -11,7 +11,7 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
       return true;
     }
     int z = super.size();
-    for (int i = 0; i < len; i++){
+    for (int i = 0; i < z; i++){
       if(super.get(i).compareTo(element) >= 0){
         super.add(i, element);
         z--;
