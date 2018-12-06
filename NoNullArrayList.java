@@ -17,14 +17,15 @@ public class NoNullArrayList<T> extends ArrayList<T>{
 
   public boolean add(T mystery){
     if (mystery == null)
-      throw new IllegalArgumentException("No");
+      return false;
      return super.add(mystery);
 
 }
-public void add(int index, T mystery){
-  if (mystery == null)
-    throw new IllegalArgumentException("No");
-  super.add(index, mystery);
+public void add(int index, T element){
+   if (index < 0 || index > super.size()) throw new ArrayIndexOutOfBoundsException();
+   if (element == null) throw new IllegalArgumentException();
+   super.add(index, element);
+ }
 
-}
+
 }
